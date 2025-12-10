@@ -1,0 +1,49 @@
+import React from 'react'
+
+function AddContact() {
+    return (
+        <section className="w-full h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-800 via-gray-900 to-black pt-15">
+            <h2 className="text-4xl font-extrabold text-center mb-8 text-white tracking-wide">
+                Add New <span className="text-blue-500">Contact</span>
+            </h2>
+
+            <div className="w-full max-w-md p-8 rounded-2xl bg-gray-900/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-white/10">
+                <form className="flex flex-col gap-6">
+
+                    {/* Name Input */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-sm text-gray-300 font-medium">Name</label>
+                        <input
+                            type="text"
+                            placeholder="Devang Randeria"
+                            className="p-3 rounded-xl bg-gray-800/60 border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-600/40 outline-none transition text-white"
+                        />
+                    </div>
+
+                    {/* Phone Input */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-sm text-gray-300 font-medium">Phone</label>
+                        <input
+                            type="tel"
+                            placeholder="6324567890"
+                            className="p-3 rounded-xl bg-gray-800/60 border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-600/40 outline-none transition text-white"
+                        />
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                        className="mt-4 bg-blue-600 hover:bg-blue-500 w-full py-3 rounded-xl 
+        font-semibold text-lg text-white shadow-lg shadow-blue-900/40 
+        transition-all duration-300"
+                    >
+                        Add Contact
+                    </button>
+
+                </form>
+            </div>
+        </section>
+
+    )
+}
+
+export default AddContact
