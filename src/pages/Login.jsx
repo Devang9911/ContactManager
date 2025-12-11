@@ -78,7 +78,7 @@ function Login() {
     
 
     return (
-        <section className="w-full flex items-center justify-center bg-gray-900 p-1">
+        <section className="w-full h-screen flex items-center justify-center bg-gray-900 p-1">
             <div className="w-full max-w-md text-white p-5 rounded-2xl mt-25 mb-5">
                 <h2 className="text-3xl font-bold text-center mb-6">
                     Welcome Back!
