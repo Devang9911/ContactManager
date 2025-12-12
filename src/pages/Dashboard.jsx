@@ -25,7 +25,16 @@ function Dashboard() {
         )
     }
 
-   
+    const handleSearch = (e) => {
+        const query = e.target.value.toLowerCase()
+        const filteredContacts = contacts.filter(contact =>
+            contact.name.toLowerCase().includes(query) ||
+            contact.number.includes(query)
+        )
+        setUserContacts(filteredContacts)
+    }
+
+
     return (
         <section className="w-full min-h-screen bg-linear-to-br from-gray-800 via-gray-900 to-black p-6 md:p-10">
             <div className="flex flex-col md:flex-row gap-6 h-full mt-20">
@@ -37,8 +46,17 @@ function Dashboard() {
                 </div>
 
                 {/* RIGHT CONTACT LIST */}
-                <div className="p-6 rounded-3xl bg-gray-800 shadow-xl w-full md:w-2/3 h-full flex flex-col">
-                    <h1 className="text-3xl font-bold text-white mb-5">Contact List</h1>
+                <div className="p-6 rounded-3xl bg-gray-800 shadow-xl w-full md:w-2/3 h-full flex flex-col gap-6">
+                    <h1 className="text-3xl font-bold text-white">Contact List</h1>
+
+                    <input
+                        className="p-3 rounded-xl text-white bg-gray-800 border border-gray-700 focus:border-blue-500 outline-none"
+                        onChange={handleSearch}
+                        type="text"
+                        placeholder="Search contacts..."
+                        name="search"
+                        autoComplete="off"
+                    />
 
                     {/* Scrollable List */}
                     <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] pr-2">
@@ -74,7 +92,7 @@ function Dashboard() {
                             ))
                         )}
 
-                        
+
 
 
 
