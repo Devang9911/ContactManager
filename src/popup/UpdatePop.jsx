@@ -1,20 +1,37 @@
-import { usePopup } from "../hooks/usePopup";
 import { useState, useEffect } from "react";
+import { useUpdatePop } from "../hooks/useUpdatePop";
+import { useContact } from "../hooks/useContact";
 
 const UpdatePop = () => {
-    const { popup, hidePopup } = usePopup();
+
+    const {updateState , closeUpdatePop} = useUpdatePop();
+    const {updateContact} = useContact();
+    const contact = updateState.contact;
+
     const [name, setName] = useState("");
     const [number, setNumber] = useState("");
 
-    // When popup opens, fill existing data
     useEffect(() => {
-        if (popup.visible && popup.type === "update") {
-            setName(popup.data?.name || "");
-            setNumber(popup.data?.number || "");
+        if (contact) {
+            setName(contact.name || "");
+            setNumber(contact.number || "");
         }
-    }, [popup]);
+    }, [contact]);
 
-    if (!popup.visible || popup.type !== "update") return null;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const updatedContact = {
+            id : contact.id,
+            name,
+            number
+        };
+
+        await updateContact(updatedContact);
+        closeUpdatePop();
+    }
+
+    if (!updateState.visible) return null;
 
     return (
         <>
@@ -44,40 +61,30 @@ const UpdatePop = () => {
                         Update Contact
                     </h2>
 
-                    <div className="flex flex-col gap-4 mb-4">
+                    <form className="flex flex-col gap-4 mb-4" onSubmit={handleSubmit}>
                         <input
                             type="text"
                             value={name}
-                            placeholder="Enter name"
                             onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter name"
                             className="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
 
                         <input
                             type="number"
                             value={number}
-                            placeholder="Enter number"
                             onChange={(e) => setNumber(e.target.value)}
+                            placeholder="Enter number"
                             className="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
-                    </div>
+                        <button
+                            type="submit"
+                            className="w-full py-2.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                        >
+                            Update
+                        </button>
+                    </form>
 
-                    <button
-                        className="w-full py-2.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-                        onClick={() => {
-                            if (!name || !number) return;
-
-                            popup.onUpdate({
-                                id: popup.data.id,
-                                name,
-                                number,
-                            });
-
-                            hidePopup();
-                        }}
-                    >
-                        Update
-                    </button>
 
                 </div>
             </div>

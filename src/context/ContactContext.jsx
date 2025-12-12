@@ -41,11 +41,16 @@ export const ContactProvider = ({ children }) => {
         setRefresh(prev => !prev)
     }
 
+    const updateContact = async (data) => {
+        const response = await axios.put(`${contactsUrl}/${data.id}`, data)
+        setRefresh(prev => !prev)
+        return { contact: response.data }
+    }
 
 
 
     return (
-        <ContactContext.Provider value={{ addContact, contacts, deleteContact}}>
+        <ContactContext.Provider value={{ addContact, contacts, deleteContact , updateContact }}>
             {children}
         </ContactContext.Provider>
     )

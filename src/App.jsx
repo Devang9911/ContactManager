@@ -9,6 +9,7 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 import ProtectedRoutes from './protectedroutes/ProtectedRoutes'
 import Popup from './popup/Popup'
+import UpdatePop from './popup/UpdatePop'
 
 
 function App() {
@@ -16,24 +17,25 @@ function App() {
   return (
     <>
       <Header />
-      <Popup/>
+      <Popup />
+      <UpdatePop />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/dashboard' element={
           <ProtectedRoutes>
-            <Dashboard/>
+              <Dashboard />
           </ProtectedRoutes>
-        }/>
+        } />
         <Route path='/addcontact' element={
           <ProtectedRoutes>
-            <AddContact/>
+            <AddContact />
           </ProtectedRoutes>
-        }/>
+        } />
       </Routes>
 
-      <Footer/>
+      <Footer />
     </>
   )
 }

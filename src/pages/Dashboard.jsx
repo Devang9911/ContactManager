@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useContact } from '../hooks/useContact'
 import { usePopup } from '../hooks/usePopup'
+import { useUpdatePop } from '../hooks/useUpdatePop'
 
 function Dashboard() {
 
     const { contacts, deleteContact } = useContact()
+    const { showUpdatePop } = useUpdatePop()
     const { showPopup } = usePopup()
     const [userConacts, setUserContacts] = useState([])
 
@@ -23,6 +25,7 @@ function Dashboard() {
         )
     }
 
+   
     return (
         <section className="w-full min-h-screen bg-linear-to-br from-gray-800 via-gray-900 to-black p-6 md:p-10">
             <div className="flex flex-col md:flex-row gap-6 h-full mt-20">
@@ -56,7 +59,7 @@ function Dashboard() {
                                     {/* Right side: update & delete buttons */}
                                     <div className="flex gap-3 md:gap-4 mt-3 md:mt-0">
                                         <button
-                                            
+                                            onClick={() => showUpdatePop(contact)}
                                             className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200">
                                             Update
                                         </button>
@@ -71,6 +74,7 @@ function Dashboard() {
                             ))
                         )}
 
+                        
 
 
 

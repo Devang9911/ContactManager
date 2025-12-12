@@ -25,8 +25,8 @@ const Popup = () => {
                 }
                 `}
             </style>
-            <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-9999 animate-fadeIn">
-                <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/30 w-[320px] text-center scale-95 animate-popup">
+            <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-9999 fade-in">
+                <div className="bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/30 w-[320px] text-center scale-95 popup-zoom">
 
                     <h2 className="font-semibold text-2xl text-gray-800 mb-3">
                         {popup.title}
