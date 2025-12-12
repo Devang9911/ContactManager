@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { useContact } from "../hooks/useContact"
 import { usePopup } from "../hooks/usePopup"
 import { useNavigate } from 'react-router'
-
+import { useAuth } from '../hooks/useAuth'
 function AddContact() {
 
-    const { addContact, currentUserId } = useContact()
+    const { addContact } = useContact()
+    const { authUser } = useAuth()
     const { showPopup } = usePopup()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
+    const currentUser = sessionStorage.getItem("userId")
 
+    
     const [data, setData] = useState({
         name: "",
         number: "",
@@ -19,9 +22,9 @@ function AddContact() {
     useEffect(() => {
         setData({
             ...data,
-            userId: currentUserId
+            userId: currentUser
         })
-    }, [currentUserId])
+    }, [currentUser])
 
     const handleChange = (e) => {
         setData({

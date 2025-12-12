@@ -35,10 +35,6 @@ function Login() {
                     "Account with this email does not exist",
                     "warning"
                 )
-                setFormData({
-                    email: "",
-                    password: ""
-                })
                 return
             }
             if(response.error === "invalid-credentials"){

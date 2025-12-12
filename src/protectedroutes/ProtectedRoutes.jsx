@@ -2,24 +2,23 @@ import { Navigate, useNavigate } from "react-router"
 import { usePopup } from "../hooks/usePopup"
 import { useEffect } from "react"
 
-const ProtectedRoutes = ({ children }) => {
-    const { showPopup } = usePopup()
-    const currentUser = sessionStorage.getItem("userId")
+    const ProtectedRoutes = ({ children }) => {
+        const { showPopup } = usePopup()
+        const currentUser = sessionStorage.getItem("userId")
+        useEffect(() => {
+            if (!currentUser) {
+                showPopup(
+                    "Not logged in",
+                    "Please login yourself",
+                    "warning"
+                )
+            }
+        }, [currentUser])
 
-    useEffect(() => {
         if (!currentUser) {
-            showPopup(
-                "Not logged in",
-                "Please login yourself",
-                "warning"
-            )
+            return <Navigate to="/login" replace />
         }
-    }, [currentUser])
-
-    if (!currentUser) {
-        return <Navigate to="/login" replace />
+        return children
     }
-    return children
-}
 
 export default ProtectedRoutes

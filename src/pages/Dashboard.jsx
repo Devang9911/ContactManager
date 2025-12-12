@@ -4,11 +4,9 @@ import { usePopup } from '../hooks/usePopup'
 
 function Dashboard() {
 
-    const { contacts, deleteContact, handleUpdate } = useContact()
+    const { contacts, deleteContact } = useContact()
     const { showPopup } = usePopup()
     const [userConacts, setUserContacts] = useState([])
-
-    
 
     useEffect(() => {
         if (contacts) {
@@ -24,10 +22,6 @@ function Dashboard() {
             "success"
         )
     }
-
-    
-
-
 
     return (
         <section className="w-full min-h-screen bg-linear-to-br from-gray-800 via-gray-900 to-black p-6 md:p-10">

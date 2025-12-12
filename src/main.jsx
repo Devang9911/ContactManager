@@ -9,14 +9,14 @@ import { ContactProvider } from './context/ContactContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
+    <AuthProvider>
+      <BrowserRouter>
         <PopupProvider>
           <ContactProvider>
             <App />
           </ContactProvider>
         </PopupProvider>
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>,
 )

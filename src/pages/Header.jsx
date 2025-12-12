@@ -24,17 +24,17 @@ function Header() {
 
     const handleLogout = () => {
         setLoading(true)
-        try{
+        try {
             logoutUser()
             setOpen(false)
             showPopup(
                 "Logged Out",
                 "You have been logged out successfully",
                 "success",
-                () => navigate("/")
-                
+                () => navigate("/login")
+
             )
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -93,24 +93,24 @@ function Header() {
                                     Add Contact
                                 </li>
                             </Link>
-                                {currentUserId ? (
+                            {currentUserId ? (
+                                <li
+                                    className="cursor-pointer hover:text-blue-400 border-b border-blue-700/99 "
+                                    onClick={handleLogout}
+                                >
+                                    {loading ? "Logout..." : "Logout"}
+                                </li>
+                            ) : (
+                                <Link to={'/signup'}>
                                     <li
                                         className="cursor-pointer hover:text-blue-400 border-b border-blue-700/99"
-                                        onClick={handleLogout}
+                                        onClick={() => setOpen(false)}
                                     >
-                                        {loading ? "Logout..." : "Logout"}
+                                        Signup
                                     </li>
-                                ) : (
-                                    <Link to={'/signup'}>
-                                        <li
-                                            className="cursor-pointer hover:text-blue-400 border-b border-blue-700/99"
-                                            onClick={() => setOpen(false)}
-                                        >
-                                            Signup
-                                        </li>
-                                    </Link>
-                                )
-                                }
+                                </Link>
+                            )
+                            }
                         </ul>
                     </div>
 
@@ -138,13 +138,14 @@ function Header() {
                     </li>
                 </Link>
                 {currentUserId ? (
-                    <li className="group relative text-lg font-medium text-gray-200 cursor-pointer" onClick={handleLogout}>
+                    <li className="group relative text-lg font-medium text-gray-200 cursor-pointer px-3"
+                    onClick={handleLogout}>
                         {loading ? "Logout..." : "Logout"}
                         <span className="absolute left-0 -bottom-1 border-b-2 border-blue-500 w-0 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                     </li>
                 ) : (
                     <Link to={'/signup'}>
-                        <li className="group relative text-lg font-medium text-gray-200 cursor-pointer">
+                        <li className="group relative text-lg font-medium text-gray-200 cursor-pointer px-3">
                             Signup
                             <span className="absolute left-0 -bottom-1 border-b-2 border-blue-500 w-0 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
                         </li>
